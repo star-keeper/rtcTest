@@ -22,4 +22,4 @@ echo "Please connect the Chronodot upon shutdown."
 echo "Once connected, turn the Raspberry Pi back on."
 echo "Your Raspberry Pi will shutdown in 10 seconds."
 sleep 10
-sudo shutdown -r now
+sudo shutdown now

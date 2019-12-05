@@ -4,20 +4,11 @@ echo "This will take between 5 and 10 minutes."
 sudo apt-get update
 sudo apt-get -y upgrade
 
-echo "Please add the following to the /etc/modules"
-echo "   rtc-ds1307"
+echo "Please add the following lines to /boot/config.txt"
+echo "   dtparam=i2c=on"
+echo "   dtoverlay=i2c-rtc,ds3231"
 
-lxterminal &
-sudo nano /etc/modules
-exit
-
-echo "Please add the following to /etc/rc.local just before exit"
-echo "   echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device"
-echo "   hwclock -s"
-
-lxterminal &
-sudo nano /etc/rc.local
-exit
+lxterminal -e sudo nano /boot/config.txt
 
 sudo hwclock -w
 sudo systemctl disable ntp
