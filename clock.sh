@@ -1,11 +1,16 @@
 #!/bin/bash
 
 currentHour=1 #h
-secInHour=20 #s
+secInHour=60 #s
 interval=5 #s
 boot=90 #s documentation states ntp updates every minute
 
-mkdir data
+cd /home/pi/Documents/rtcTest
+
+#create a data folder
+counts=$(ls -l | wc -l)
+counts=$((counts-7)) #only count data folders
+mkdir data$counts
 
 #ensure ntp is enabled to start
 sudo systemctl enable ntp
