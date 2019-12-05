@@ -10,11 +10,25 @@ echo "   dtoverlay=i2c-rtc,ds3231"
 
 lxterminal -e sudo nano /boot/config.txt
 
-sudo hwclock -w
-sudo systemctl disable ntp
-sudo systemctl stop ntp
+#wait for user
+while true; do
+	read -p "Press enter to continue. >  " yn
+	case $yn in
+		* ) break;;
+	esac
+done
 
-echo "COMPLETE"
-echo "Current Time"
+echo "Please add the following line to crontab.cron"
+echo "   @reboot /home/pi/Documents/rtcTest/clock.sh"
 
-sudo hwclock -r
+lxterminal -e sudo nano crontab.cron
+
+#wait for user
+while true; do
+	read -p "Press any enter to continue. > " yn
+	case $yn in
+		* ) break;;
+	esac
+done
+
+sudo crontab ./crontab.cron
