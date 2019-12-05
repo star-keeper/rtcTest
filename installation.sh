@@ -11,9 +11,9 @@ echo "You will be prompted to set your timezone in 10 seconds."
 echo "   4 Localization Option > I2 Change Timezone"
 echo "   select area > select timezone > Finish"
 sleep 10
-sudo raspi-config
+lxterminal -e sudo raspi-config
 
-systemctl stop ntp
+sudo systemctl stop ntp
 sudo systemctl disable ntp
 sudo systemctl enable ntp
 
