@@ -13,6 +13,14 @@ echo "   select area > select timezone > Finish"
 sleep 10
 lxterminal -e sudo raspi-config
 
+#wait for user
+while true; do
+	read -p "Press enter to continue. >  " yn
+	case $yn in
+		* ) break;;
+	esac
+done
+
 sudo systemctl stop ntp
 sudo systemctl disable ntp
 sudo systemctl enable ntp
