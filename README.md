@@ -2,7 +2,7 @@
 Tests the RTC on a Chronodot.
 Setup and Script for Real Time Clock tests
 
-Please complete these sequentually for first time setup:
+**Please complete these sequentually for first time setup:**
 $ ./setup.sh
 $ ./installation.sh
 The Raspberry Pi will shut itself down. Plug a Chronodot into the gpio pins.
