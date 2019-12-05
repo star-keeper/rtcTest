@@ -19,6 +19,9 @@ sudo systemctl start ntp
 #give ntp time to update
 sleep $boot
 
+#update hwclock to hold the same time as ntp
+sudo hwclock -w
+
 #run for an hour without ntp (then for two hours...then for three hours...etc)
 #note: might need to switch to hwclock commands
 #note: do I need to make sure the rtc is set up here? or wait for it?
