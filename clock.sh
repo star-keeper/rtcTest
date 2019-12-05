@@ -1,9 +1,9 @@
 #!/bin/bash
 
 currentHour=1 #h
-secInHour=60 #s
+secInHour=3600 #s
 interval=5 #s
-boot=0 #s documentation states ntp updates every minute
+boot=90 #s documentation states ntp updates every minute
 
 cd /home/pi/Documents/rtcTest
 

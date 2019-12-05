@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -r data* -I
+sudo rm -r data* -I
