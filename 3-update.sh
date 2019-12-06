@@ -18,17 +18,4 @@ while true; do
 	esac
 done
 
-echo "Please add the following line to crontab.cron"
-echo "   @reboot /home/pi/Documents/rtcTest/clock.sh"
-
-lxterminal -e sudo nano crontab.cron
-
-#wait for user
-while true; do
-	read -p "Press any enter to continue. > " yn
-	case $yn in
-		* ) break;;
-	esac
-done
-
 sudo crontab ./crontab.cron
