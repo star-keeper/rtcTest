@@ -14,7 +14,7 @@ lxterminal -e sudo raspi-config
 while true; do
 	read -p "Are you connected to the internet? [yn] > " yn
 	case $yn in
-		[Yy]* ) echo "Good, let's continue."; ./installation.sh; break;;
+		[Yy]* ) echo "Good, let's continue."; ./2-installation.sh; break;;
 		[Nn]* ) echo "Please connect to the internet and run ./installation.sh when you are connected."; exit;;
 		* ) echo "Please answer [y] or [n]."
 	esac
