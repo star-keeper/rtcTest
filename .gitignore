@@ -53,4 +53,3 @@ dkms.conf
 
 # Data files
 data*/
-crontab.cron
