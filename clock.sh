@@ -29,6 +29,7 @@ while true; do
 	echo $(timedatectl show --property=TimeUSec --value) "network" >&3 #first reliable time
 	sudo systemctl stop ntp
 	sudo systemctl disable ntp
+	echo $(sudo hwclock -r) "readrtc" <&3 #if this doesn't appear then hwclock not set up properly
 	echo $(timedatectl show --property=TimeUSec --value) "hwclock" >&3 #time immediately after disable
 
 	#prepare for inner while
