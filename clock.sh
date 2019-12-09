@@ -24,13 +24,12 @@ sudo hwclock -w
 
 #run for an hour without ntp (then for two hours...then for three hours...etc)
 #note: might need to switch to hwclock commands
-#note: do I need to make sure the rtc is set up here? or wait for it?
 while true; do
 	exec 3<> data${counts}/${currentHour}currentHour.csv
-	timedatectl show --property=TimeUSec --value >&3 #first reliable time
+	echo $(timedatectl show --property=TimeUSec --value) "network" >&3 #first reliable time
 	sudo systemctl stop ntp
 	sudo systemctl disable ntp
-	timedatectl show --property=TimeUSec --value >&3 #time immediately after disable
+	echo $(timedatectl show --property=TimeUSec --value) "hwclock" >&3 #time immediately after disable
 
 	#prepare for inner while
 	count=1
@@ -39,7 +38,7 @@ while true; do
 
 	while [ $moment -le $fullTime ]; do
 		sleep $interval #s
-		timedatectl show --property=TimeUSec --value >&3 #monitor time
+		echo $(timedatectl show --property=TimeUSec --value) "hwclock" >&3 #monitor time
 
 		#update for next inner while
 		count=$((count + 1))
@@ -53,7 +52,7 @@ while true; do
 
 	#give ntp time to update in case of drift
 	sleep $boot
-	timedatectl show --property=TimeUSec --value >&3 #time after enable and boot wait
+	echo $(timedatectl show --property=TimeUSec --value) "network" >&3 #time after enable and boot wait
 
 	currentHour=$((currentHour + 1))
 	exec 3>&-
