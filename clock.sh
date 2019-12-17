@@ -54,6 +54,10 @@ while true; do
 	sleep $boot
 	echo $(timedatectl show --property=TimeUSec --value) "network" >&3 #time after enable and boot wait
 
+	#send an email
+	echo "current hour: "${currentHour}" -- interval period: "${interval}" -- boot time: "${boot} | mutt -s "PI2: $(date)" raspberrysatellites@gmail.com -y -a data${counts}/${currentHour}currentHour.csv
+
+	#update the current hour
 	currentHour=$((currentHour + 1))
 	exec 3>&-
 done
