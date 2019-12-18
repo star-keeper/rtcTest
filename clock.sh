@@ -1,5 +1,6 @@
 #!/bin/bash
 
+currentPi=1 #be sure to change this
 currentHour=1 #h
 secInHour=3600 #s
 interval=5 #s
@@ -56,7 +57,7 @@ while true; do
 	exec 3>&-
 
 	#process file and send an email
-	./convert.sh $counts 1 $currentHour $interval $boot
+	./convert.sh $counts $currentPi $currentHour $interval $boot
 
 	#confirm ip address
 	if [ ${currentHour} -eq 1 ]; then
