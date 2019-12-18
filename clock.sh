@@ -1,9 +1,9 @@
 #!/bin/bash
 
 currentHour=1 #h
-secInHour=3600 #s
+secInHour=20 #s
 interval=5 #s
-boot=90 #s documentation states ntp updates every minute
+boot=5 #s documentation states ntp updates every minute
 
 cd /home/pi/Documents/rtcTest
 
@@ -53,11 +53,19 @@ while true; do
 	#give ntp time to update in case of drift
 	sleep $boot
 	echo $(timedatectl show --property=TimeUSec --value) "network" >&3 #time after enable and boot wait
+	exec 3>&-
 
 	#send an email
 	echo "current hour: "${currentHour}" -- interval period: "${interval}" -- boot time: "${boot} | mutt -s "PI2: $(date)" raspberrysatellites@gmail.com -y -a data${counts}/${currentHour}currentHour.csv
 
+	#confirm ip address
+	if [ ${currentHour} -eq 1 ]; then
+		cd .my
+		./confirm.sh
+		cd ..
+	fi
+
 	#update the current hour
 	currentHour=$((currentHour + 1))
-	exec 3>&-
+
 done
