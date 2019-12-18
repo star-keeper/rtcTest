@@ -9,7 +9,7 @@ cd /home/pi/Documents/rtcTest
 
 #create a data folder
 counts=$(ls -l | wc -l)
-counts=$((counts-9)) #only count data folders
+counts=$((counts-10)) #only count data folders
 mkdir data${counts}
 
 #ensure ntp is enabled to start
@@ -55,8 +55,8 @@ while true; do
 	echo $(timedatectl show --property=TimeUSec --value) "network" >&3 #time after enable and boot wait
 	exec 3>&-
 
-	#send an email
-	echo "current hour: "${currentHour}" -- interval period: "${interval}" -- boot time: "${boot} | mutt -s "PI2: $(date)" raspberrysatellites@gmail.com -y -a data${counts}/${currentHour}currentHour.csv
+	#process file and send an email
+	./convert.sh $counts 2 $currentHour $interval $boot
 
 	#confirm ip address
 	if [ ${currentHour} -eq 1 ]; then
