@@ -1,9 +1,11 @@
 
 #!/bin/bash
 
-sudo apt install mailutils -y
-sudo apt install mutt -y
-sudo apt-get install libsasl2-modules postfix -y
+if [ $1 -eq 1 ]; then
+	sudo apt install mailutils -y
+	sudo apt install mutt -y
+	sudo apt-get install libsasl2-modules postfix -y
+fi
 
 echo "++ Have you set up a password for Postfix? You will need it now."
 echo "++ Add the following line to /etc/postfix/sasl/sasl_passwd"
