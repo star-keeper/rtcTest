@@ -6,18 +6,18 @@ sudo apt install mutt -y
 sudo apt-get install libsasl2-modules postfix -y
 
 echo "++ Have you set up a password for Postfix? You will need it now."
+echo "++ Add the following line to /etc/postfix/sasl/sasl_passwd"
+echo "[smtp.gmail.com]:587 raspberrysatellites@gmail.com:password"
 #wait for user's password to be ready
-sudo chmod a+rw /etc/postfix/sasl/sasl_passwd
 while true; do
-	read -p "++ Input your Postfix password. >  " yn
+	read -p "++ Press enter to continue. >  " yn
 	case $yn in
-		*) sudo echo "[smtp.gmail.com]:587 raspberrysatellites@gmail.com:$()" > /etc/postfix/sasl/sasl_passwd; break;;
+		*) break;;
 	esac
 done
 
+sudo nano /etc/postfix/sasl/sasl_passwd
 sudo postmap /etc/postfix/sasl/sasl_passwd
-sudo chmod g-w /etc/postfix/sasl/sasl_passwd
-sudo chmod u-w /etc/postfix/sasl/sasl_passwd
 
 echo "++ Set hostname to smtp.gmail.com"
 echo "++ Set postmaster to raspberrysatellites@gmail.com"

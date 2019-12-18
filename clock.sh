@@ -1,6 +1,6 @@
 #!/bin/bash
 
-currentPi=1 #be sure to change this
+currentPi=4 #be sure to change this
 currentHour=1 #h
 secInHour=3600 #s
 interval=5 #s
