@@ -10,7 +10,7 @@ cd /home/pi/Documents/rtcTest
 
 #create a data folder
 counts=$(ls -l | wc -l)
-counts=$((counts-10)) #only count data folders
+counts=$((counts-12)) #only count data folders
 mkdir data${counts}
 
 #ensure ntp is enabled to start
