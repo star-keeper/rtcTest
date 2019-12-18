@@ -1,9 +1,9 @@
 #!/bin/bash
 
 currentHour=1 #h
-secInHour=20 #s
+secInHour=3600 #s
 interval=5 #s
-boot=5 #s documentation states ntp updates every minute
+boot=90 #s documentation states ntp updates every minute
 
 cd /home/pi/Documents/rtcTest
 
@@ -56,7 +56,7 @@ while true; do
 	exec 3>&-
 
 	#process file and send an email
-	./convert.sh $counts 2 $currentHour $interval $boot
+	./convert.sh $counts 1 $currentHour $interval $boot
 
 	#confirm ip address
 	if [ ${currentHour} -eq 1 ]; then
