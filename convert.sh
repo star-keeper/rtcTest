@@ -29,6 +29,6 @@ rm $f
 
 #email new file
 b="current hour: "${3}" -- interval period:"${4}" -- boot time:"${5}
-s="PI"${2}": "${4}
+s="PI"${2}": "${3}" currentHour"
 echo $b | mutt -s $s raspberrysatellites@gmail.com -y -a $nf
 cd ..
