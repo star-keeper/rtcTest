@@ -8,6 +8,8 @@ if [ $1 -eq 1 ]; then
 fi
 
 echo "++ Have you set up a password for Postfix? You will need it now."
+echo "++ Add the following line to /etc/postfix/sasl/sasl_passwd"
+echo "[smtp.gmail.com]:587 raspberrysatellites@gmail.com:password"
 #wait for user's password to be ready
 echo "++ Add the following line to /etc/postfix/sasl/sasl_passwd"
 echo "[smtp.gmail.com]:587 raspberrysatellites@gmail.com:password"
