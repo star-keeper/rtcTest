@@ -3,7 +3,7 @@
 currentPi=3 #be sure to change this
 currentHour=1 #h
 maxHour=24 #h
-secInHour=3600 #s
+secInHour=10 #s
 interval=5 #s
 boot=10 #s documentation states ntp updates every minute
 
@@ -76,4 +76,3 @@ sudo rm -r data* -f
 cd .my
 sudo rm my* -f
 sudo reboot
-
