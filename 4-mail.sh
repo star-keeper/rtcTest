@@ -8,9 +8,9 @@ if [ $1 -eq 1 ]; then
 fi
 
 echo "++ Have you set up a password for Postfix? You will need it now."
+#wait for user's password to be ready
 echo "++ Add the following line to /etc/postfix/sasl/sasl_passwd"
 echo "[smtp.gmail.com]:587 raspberrysatellites@gmail.com:password"
-#wait for user's password to be ready
 while true; do
 	read -p "++ Press enter to continue. >  " yn
 	case $yn in
@@ -18,7 +18,16 @@ while true; do
 	esac
 done
 
-sudo nano /etc/postfix/sasl/sasl_passwd
+lxterminal -e sudo nano /etc/postfix/sasl/sasl_passwd
+
+
+while true; do
+	read -p "++ Press any key to continue. >" yn
+	case $yn in
+		*) break;;
+	esac
+done
+
 sudo postmap /etc/postfix/sasl/sasl_passwd
 
 echo "++ Set hostname to smtp.gmail.com"
@@ -26,31 +35,31 @@ echo "++ Set postmaster to raspberrysatellites@gmail.com"
 echo "++ Remove anything that says gmail in domains this machine should recognize"
 echo "++ Leave everything else on defaults."
 while true; do
-	read -p "Press enter to continue. >  " yn
+	read -p "++ Press enter to continue. >  " yn
 	case $yn in
 		*) break;;
 	esac
 done
 
-sudo dpkg-reconfigure postfix
+lxterminal -e sudo dpkg-reconfigure postfix
 
-echo "Set relayhost to [smtp.gmail.com]:587"
+echo "++ Set relayhost to [smtp.gmail.com]:587"
 while true; do
-	read -p "Press enter to continue. >  " yn
+	read -p "++ Press enter to continue. >  " yn
 	case $yn in
 		*) break;;
 	esac
 done
 
-sudo nano /etc/postfix/main.cf
+lxterminal -e sudo nano /etc/postfix/main.cf
 
 a=true
 while true; do
-	read -p "Do you need to update the end of main.cf? [yn] >  " yn
+	read -p "++ Do you need to update the end of main.cf? [yn] >  " yn
 	case $yn in
 		[Yy]* ) a=true; break;;
 		[Nn]* ) a=false; break;;
-		* ) echo "Do you need to update the end of main.cf? [yn] >  "
+		* ) echo "++ Do you need to update the end of main.cf? [yn] >  "
 	esac
 done
 
