@@ -1,8 +1,8 @@
 #!/bin/bash
 
-currentPi=4 #be sure to change this
+currentPi=2 #be sure to change this
 currentHour=1 #h
-maxHour=24 #h
+maxHour=6 #h
 secInHour=3600 #s
 interval=5 #s
 boot=90 #s documentation states ntp updates every minute
@@ -26,7 +26,7 @@ sudo hwclock -w
 
 #run for an hour without ntp (then for two hours...then for three hours...etc)
 #note: might need to switch to hwclock commands
-while [$currentHour -le $maxHour]; do
+while [ $currentHour -le $maxHour ]; do
 	exec 3<> data${counts}/${currentHour}currentHour.csv
 	echo $(timedatectl show --property=TimeUSec --value) "network" >&3 #first reliable time
 	sudo systemctl stop ntp
@@ -76,4 +76,3 @@ sudo rm -r data* -f
 cd .my
 sudo rm my* -f
 sudo reboot
-

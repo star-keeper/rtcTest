@@ -12,7 +12,7 @@ lxterminal -e sudo nano /boot/config.txt
 
 #wait for user
 while true; do
-	read -p "Press enter to continue. >  " yn
+	read -p "Press any key to continue. >  " yn
 	case $yn in
 		* ) break;;
 	esac
