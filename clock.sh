@@ -1,9 +1,9 @@
 #!/bin/bash
 
-currentPi=3 #be sure to change this
+currentPi=1 #be sure to change this
 currentHour=1 #h
-maxHour=24 #h
-secInHour=3600 #s
+maxHour=6 #h
+secInHour=10 #s
 interval=5 #s
 boot=90 #s documentation states ntp updates every minute
 
