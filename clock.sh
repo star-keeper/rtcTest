@@ -73,6 +73,7 @@ while [$currentHour -le $maxHour]; do
 done
 
 sudo rm -r data* -f
+cd .my
 sudo rm my* -f
 sudo reboot
 
